@@ -38,6 +38,14 @@ const cli = meow(`
       type: 'string',
       alias: 'd'
     },
+    outName: {
+      type: 'string',
+      alias: 'n'
+    },
+    outType: {
+      type: 'string',
+      alias: 't'
+    },
     metadata: {
       type: 'boolean'
     },
@@ -51,7 +59,9 @@ const token = process.env.FIGMA_TOKEN
 const [ id ] = cli.input
 
 const opts = Object.assign({
-  outDir: ''
+  outDir: '',
+  outName: 'theme',
+  outType: 'json'
 }, config, cli.flags)
 
 if (!token) {
@@ -63,7 +73,13 @@ if (!id) {
   cli.showHelp(0)
 }
 
+const allowedTypes = [
+  'json'
+]
+
 opts.outDir = path.resolve(opts.outDir)
+opts.outName = opts.outName.toLowerCase().replace(/[^a-z0-9\-]/gi, '-')
+opts.outType = (allowedTypes.indexOf(opts.outType) >= 0) ? opts.outType : 'json'
 
 if (!fs.existsSync(opts.outDir)) {
   fs.mkdirSync(opts.outDir)
@@ -71,7 +87,7 @@ if (!fs.existsSync(opts.outDir)) {
 
 const outFile = path.join(
   opts.outDir,
-  'theme.json'
+  opts.outName + '.' + opts.outType
 )
 
 const figma = Figma.Client({
@@ -91,9 +107,17 @@ figma.file(id)
 
     log('parsing data...')
 
-    const json = JSON.stringify(parse(data, opts), null, 2)
+    const json = parse(data, opts)
+    let outContent = '';
 
-    fs.writeFile(outFile, json, (err) => {
+    switch (opts.outType) {
+      default:
+      case 'json':
+        outContent = JSON.stringify(json, null, 2)
+        break;
+    }
+
+    fs.writeFile(outFile, outContent, (err) => {
       if (err) {
         log.error(err)
         process.exit(1)
