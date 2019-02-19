@@ -6,6 +6,7 @@ const meow = require('meow')
 const chalk = require('chalk')
 const Figma = require('figma-js')
 const parse = require('./index')
+JSON.sortify = require('json.sortify');
 
 const config = require('pkg-conf').sync('figma-theme')
 
@@ -47,6 +48,9 @@ const cli = meow(`
       alias: 't'
     },
     metadata: {
+      type: 'boolean'
+    },
+    sort: {
       type: 'boolean'
     },
     debug: {
@@ -113,7 +117,7 @@ figma.file(id)
     switch (opts.outType) {
       default:
       case 'json':
-        outContent = JSON.stringify(json, null, 2)
+        outContent = JSON[opts.sort ? 'sortify' : 'stringify'](json, null, 2)
         break;
     }
 

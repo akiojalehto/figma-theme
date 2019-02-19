@@ -124,13 +124,17 @@ module.exports = (data, opts = {}) => {
     [style.name]: style.value
   }), {})
 
-  const fontSizes = unique(textArray.map(style => style.value.fontSize))
-    .sort()
+  let fontSizes = unique(textArray.map(style => style.value.fontSize))
+  let fontWeights = unique(textArray.map(style => style.value.fontWeight))
+  let fonts = unique(textArray.map(style => style.value.fontFamily))
+  let lineHeights = unique(textArray.map(style => style.value.lineHeight))
 
-  const fontWeights = unique(textArray.map(style => style.value.fontWeight))
-    .sort()
-  const fonts = unique(textArray.map(style => style.value.fontFamily))
-  const lineHeights = unique(textArray.map(style => style.value.lineHeight))
+  if (opts.sort) {
+    fontSizes = fontSizes.sort();
+    fontWeights = fontWeights.sort();
+    fonts = fonts.sort();
+    lineHeights = lineHeights.sort();
+  }
 
   const theme = {
     colors,
