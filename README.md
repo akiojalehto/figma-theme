@@ -26,7 +26,10 @@ npm i figma-theme
 Options can be passed as CLI flags or included in a `figma-theme` object in your `package.json`
 
 - `--out-dir`: output directory (default current working directory)
+- `--out-name`: output filename without extension (default "theme")
+- `--out-type`: output type (default and *currently only supported format* is json)
 - `--metadata`: include additional metadata from the Figma API
+- `--sort`: sort results
 
 [Styles]: https://help.figma.com/properties-panel/styles
 [Styled System]: https://jxnblk.com/styled-system

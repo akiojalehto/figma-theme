@@ -31,7 +31,10 @@ const cli = meow(`
   ${chalk.gray('Options')}
 
     -d --out-dir    Output directory (default cwd)
+    -n --out-name   Output filename without extension (default theme)
+    -t --out-type   Output type (default json)
     --metadata      Include metadata from Figma API
+    --sort          Sort results
 
 `, {
   flags: {
