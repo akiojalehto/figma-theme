@@ -12,7 +12,11 @@
     "test": "nyc ava"
   },
   "keywords": [],
-  "author": "Brent Jackson",
+  "author": "Aki Ojalehto",
+  "contributors": [
+    "Aki Ojalehto",
+    "Brent Jackson"
+  ],
   "license": "MIT",
   "dependencies": {
     "chalk": "^2.4.1",
