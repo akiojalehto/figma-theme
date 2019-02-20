@@ -54,6 +54,9 @@ const cli = meow(`
     metadata: {
       type: 'boolean'
     },
+    opacityAsAlpha: {
+      type: 'boolean'
+    },
     sort: {
       type: 'boolean'
     },
