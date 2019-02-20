@@ -59,6 +59,12 @@ const cli = meow(`
     opacityAsAlpha: {
       type: 'boolean'
     },
+    rgb: {
+      type: 'boolean'
+    },
+    rgba: {
+      type: 'boolean'
+    },
     sort: {
       type: 'boolean'
     },
