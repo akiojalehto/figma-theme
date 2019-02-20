@@ -81,7 +81,7 @@ module.exports = (data, opts = {}) => {
     return {
       id: style.id,
       name: style.name,
-      value: color.hex()
+      value: (opts.rgb || (opts.rgba && alpha < 1)) ? color.css() : color.hex()
     }
   })
   .filter(Boolean)

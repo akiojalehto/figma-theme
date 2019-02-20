@@ -35,6 +35,8 @@ const cli = meow(`
     -t --out-type        Output type (default json)
     --metadata           Include metadata from Figma API
     --opacity-as-alpha   Use fill opacity as alpha channel
+    --rgb                Use rgb(a) format in all color values
+    --rgba               Use rgba format in color values with an alpha channel
     --sort               Sort results
 
 `, {

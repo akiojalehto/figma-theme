@@ -30,6 +30,8 @@ Options can be passed as CLI flags or included in a `figma-theme` object in your
 - `--out-type`: output type (default and *currently only supported format* is json)
 - `--metadata`: include additional metadata from the Figma API
 - `--opacity-as-alpha`: use fill opacity value as color's alpha channel
+- `--rgb`: Use rgb(a) format in *all* color values
+- `--rgba`: Use rgba format (instead of #rrggbbaa) in color values *with an alpha channel* (this is redundant when using --rgb option)
 - `--sort`: sort results
 
 [Styles]: https://help.figma.com/properties-panel/styles
