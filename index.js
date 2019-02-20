@@ -75,7 +75,8 @@ module.exports = (data, opts = {}) => {
 
     const [ fill = {} ] = child.fills || []
     const { r, g, b, a } = fill.color
-    const rgba = [ r, g, b ].map(n => n * 255).concat(a)
+    const alpha = (opts.opacityAsAlpha && fill.opacity !== undefined) ? fill.opacity : a
+    const rgba = [ r, g, b ].map(n => n * 255).concat(alpha)
     const color = chroma.rgb(rgba)
     return {
       id: style.id,

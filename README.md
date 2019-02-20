@@ -29,6 +29,7 @@ Options can be passed as CLI flags or included in a `figma-theme` object in your
 - `--out-name`: output filename without extension (default "theme")
 - `--out-type`: output type (default and *currently only supported format* is json)
 - `--metadata`: include additional metadata from the Figma API
+- `--opacity-as-alpha`: use fill opacity value as color's alpha channel
 - `--sort`: sort results
 
 [Styles]: https://help.figma.com/properties-panel/styles

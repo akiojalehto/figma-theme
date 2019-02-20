@@ -34,6 +34,7 @@ const cli = meow(`
     -n --out-name   Output filename without extension (default theme)
     -t --out-type   Output type (default json)
     --metadata      Include metadata from Figma API
+    --opacity-as-alpha   Use fill opacity as alpha channel
     --sort          Sort results
 
 `, {
