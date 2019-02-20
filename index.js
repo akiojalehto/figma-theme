@@ -75,8 +75,8 @@ module.exports = (data, opts = {}) => {
 
     const [ fill = {} ] = child.fills || []
     const { r, g, b, a } = fill.color
-    const rgb = [ r, g, b ].map(n => n * 255)
-    const color = chroma.rgb(rgb)
+    const rgba = [ r, g, b ].map(n => n * 255).concat(a)
+    const color = chroma.rgb(rgba)
     return {
       id: style.id,
       name: style.name,
