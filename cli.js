@@ -33,6 +33,7 @@ const cli = meow(`
     -d --out-dir         Output directory (default cwd)
     -n --out-name        Output filename without extension (default theme)
     -t --out-type        Output type (default json)
+    -f --filter          Comma separated list for filtering outputs
     --metadata           Include metadata from Figma API
     --opacity-as-alpha   Use fill opacity as alpha channel
     --rgb                Use rgb(a) format in all color values
@@ -52,6 +53,9 @@ const cli = meow(`
     outType: {
       type: 'string',
       alias: 't'
+    },
+    filter: {
+      type: 'string'
     },
     metadata: {
       type: 'boolean'
@@ -82,6 +86,7 @@ const opts = Object.assign({
   outName: 'theme',
   outType: 'json'
 }, config, cli.flags)
+opts.filter = (opts.filter !== undefined) ? opts.filter.split(',') : []
 
 if (!token) {
   log.error('FIGMA_TOKEN not found')

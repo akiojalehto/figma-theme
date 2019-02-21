@@ -28,6 +28,7 @@ Options can be passed as CLI flags or included in a `figma-theme` object in your
 - `--out-dir`: output directory (default current working directory)
 - `--out-name`: output filename without extension (default "theme")
 - `--out-type`: output type (default and *currently only supported format* is json)
+- `--filter`: comma separated list for filtering outputs (e.g. *--filter colors,textStyles*)
 - `--metadata`: include additional metadata from the Figma API
 - `--opacity-as-alpha`: use fill opacity value as color's alpha channel
 - `--rgb`: Use rgb(a) format in *all* color values

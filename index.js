@@ -16,9 +16,9 @@ const flatten = (arr = []) => arr.reduce((a, b) => {
 
 // schema
 const Theme = struct({
-  colors: 'object',
+  colors: 'object?',
   textStyles: struct.dict([
-    'string',
+    'string?',
     struct({
       fontFamily: 'string',
       fontSize: 'number',
@@ -26,10 +26,10 @@ const Theme = struct({
       lineHeight: 'number',
     })
   ]),
-  fonts: 'array',
-  fontSizes: 'array',
-  fontWeights: 'array',
-  lineHeights: 'array',
+  fonts: 'array?',
+  fontSizes: 'array?',
+  fontWeights: 'array?',
+  lineHeights: 'array?',
   metadata: 'object?'
 })
 
@@ -137,13 +137,17 @@ module.exports = (data, opts = {}) => {
     lineHeights = lineHeights.sort();
   }
 
-  const theme = {
+  let theme = {
     colors,
     textStyles: textStylesObject,
     fonts,
     fontSizes,
     fontWeights,
     lineHeights
+  }
+
+  if (opts.filter.length > 0) {
+    theme = opts.filter.reduce((obj, key) => ({ ...obj, [key]: theme[key] }), {})
   }
 
   if (opts.metadata) {
